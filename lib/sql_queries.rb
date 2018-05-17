@@ -14,26 +14,26 @@ def selects_the_titles_of_all_projects_and_their_pledge_amounts_alphabetized_by_
 end
 
 def selects_the_user_name_age_and_pledge_amount_for_all_pledges_alphabetized_by_name
-  FROM  "SELECT name, age, SUM(pledges.amount) FROM users
-  FROM  JOIN pledges
-  FROM  ON users.id = pledges.user_id
-  FROM  GROUP BY users.name
-  FROM  ORDER BY users.name;"
+    "SELECT name, age, SUM(pledges.amount) FROM users
+    JOIN pledges
+    ON users.id = pledges.user_id
+    GROUP BY users.name
+    ORDER BY users.name;"
 end
 
 def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_funding_goal
-  FROM  "SELECT title, SUM(pledges.amount)- projects.funding_goal FROM projects
-  FROM  JOIN pledges
-  FROM  ON pledges.project_id = projects.id
-  FROM  GROUP BY projects.title HAVING projects.funding_goal <= SUM(pledges.amount);"
+    "SELECT title, SUM(pledges.amount)- projects.funding_goal FROM projects
+    JOIN pledges
+    ON pledges.project_id = projects.id
+    GROUP BY projects.title HAVING projects.funding_goal <= SUM(pledges.amount);"
 end
 
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_amount_and_users_name
-  FROM  "SELECT name, SUM(pledges.amount) FROM users
-  FROM  JOIN pledges
-  FROM  ON users.id = pledges.user_id
-  FROM  GROUP BY users.name
-  FROM  ORDER BY SUM(pledges.amount);"
+    "SELECT name, SUM(pledges.amount) FROM users
+    JOIN pledges
+    ON users.id = pledges.user_id
+    GROUP BY users.name
+    ORDER BY SUM(pledges.amount);"
 end
 
 def selects_the_category_names_and_pledge_amounts_of_all_pledges_in_the_music_category
