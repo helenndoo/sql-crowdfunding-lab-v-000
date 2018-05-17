@@ -7,19 +7,33 @@
 # Make sure each ruby method returns a string containing a valid SQL statement.
 
 def selects_the_titles_of_all_projects_and_their_pledge_amounts_alphabetized_by_name
-"SELECT projects.title , SUM(pledges.amount) FROM projects, pledges where projects.id = pledges.project_id group by title order by title"
+  "SELECT title, SUM(pledges.amount) FROM projects
+  INNER JOIN pledges
+  on projects.id = pledges.project_id
+  GROUP BY projects.title ORDER BY projects.title;"
 end
 
 def selects_the_user_name_age_and_pledge_amount_for_all_pledges_alphabetized_by_name
-"SELECT users.name, users.age, SUM(pledges.amount) FROM users, pledges where users.id = pledges.user_id group by name order by name"
+  FROM  "SELECT name, age, SUM(pledges.amount) FROM users
+  FROM  JOIN pledges
+  FROM  ON users.id = pledges.user_id
+  FROM  GROUP BY users.name
+  FROM  ORDER BY users.name;"
 end
 
 def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_funding_goal
-"SELECT projects.title , (SUM(pledges.amount)-projects.funding_goal) AS goal FROM projects, pledges where projects.id = pledges.project_id group by title order by goal"
+  FROM  "SELECT title, SUM(pledges.amount)- projects.funding_goal FROM projects
+  FROM  JOIN pledges
+  FROM  ON pledges.project_id = projects.id
+  FROM  GROUP BY projects.title HAVING projects.funding_goal <= SUM(pledges.amount);"
 end
 
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_amount_and_users_name
-"SELECT users.name, SUM(pledges.amount) FROM users, pledges where users.id = pledges.user_id group by users.name order by SUM(pledges.amount) asc"
+  FROM  "SELECT name, SUM(pledges.amount) FROM users
+  FROM  JOIN pledges
+  FROM  ON users.id = pledges.user_id
+  FROM  GROUP BY users.name
+  FROM  ORDER BY SUM(pledges.amount);"
 end
 
 def selects_the_category_names_and_pledge_amounts_of_all_pledges_in_the_music_category
