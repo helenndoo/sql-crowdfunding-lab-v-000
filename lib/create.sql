@@ -18,7 +18,7 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE pledges(
+CREATE TABLE pledges (
   id INTEGER PRIMARY KEY,
   amount INTEGER,
   user_id INTEGER,
